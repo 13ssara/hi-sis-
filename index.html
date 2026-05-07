@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding and viewport settings for responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi-Sis Homepage</title>
+    <!-- Link to external CSS stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Link to JavaScript file (defer means it runs after HTML loads) -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- HEADER SECTION: Top-right navigation icons -->
+    <header>
+    <div class="icons">
+        <a href="profile.html" class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-6.1 0-8 4-8 4v2h16v-2s-1.9-4-8-4z"/></svg></a>
+        <a href="index.html" class="icon active"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></a>
+        <a href="settings.html" class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></a>
+    </div>
+</header>
+    <img src="deer.png" class="deer-decoration">
+
+    
+<!-- MAIN CONTENT: Tree with branches and section links -->
+<main>
+    <div class="tree-container">
+        <!-- SVG TREE DRAWING: Brown tree with trunk and branches -->
+        <svg class="tree" viewBox="0 0 3600 2400" xmlns="http://www.w3.org/2000/svg">
+            <!-- Main tree trunk (vertical line on left) - ORIGINAL SIZE KEPT -->
+            <rect x="-1000" y="-350" width="950" height="3800" fill="#613831" />
+            
+            <!-- BRANCH 1: Top branches with smaller sub-branches -->
+            <line x1="-300" y1="850" x2="1200" y2="550" stroke="#613831" stroke-width="120" />
+            <line x1="1200" y1="550" x2="2600" y2="550" stroke="#613831" stroke-width="80" />
+            <line x1="1200" y1="550" x2="1400" y2="650" stroke="#613831" stroke-width="60" />
+            <line x1="1200" y1="550" x2="1250" y2="400" stroke="#613831" stroke-width="48" />
+            <line x1="2600" y1="550" x2="2950" y2="450" stroke="#613831" stroke-width="40" />
+            <line x1="2600" y1="550" x2="2750" y2="650" stroke="#613831" stroke-width="32" />
+            <line x1="2100" y1="550" x2="2450" y2="450" stroke="#613831" stroke-width="40" />
+            <line x1="2100" y1="550" x2="2350" y2="650" stroke="#613831" stroke-width="32" />
+            
+            <!-- BRANCH 2: Middle branches with smaller sub-branches -->
+            <line x1="-300" y1="1300" x2="1200" y2="1000" stroke="#613831" stroke-width="120" />
+            <line x1="1200" y1="1000" x2="2600" y2="1000" stroke="#613831" stroke-width="80" />
+            <line x1="1200" y1="1000" x2="1400" y2="1200" stroke="#613831" stroke-width="60" />
+            <line x1="1200" y1="1000" x2="1250" y2="850" stroke="#613831" stroke-width="48" />
+            <line x1="2600" y1="1000" x2="2950" y2="900" stroke="#613831" stroke-width="40" />
+            <line x1="2600" y1="1000" x2="2750" y2="1100" stroke="#613831" stroke-width="32" />
+            <line x1="2100" y1="1000" x2="2450" y2="900" stroke="#613831" stroke-width="40" />
+            <line x1="2100" y1="1000" x2="2350" y2="1100" stroke="#613831" stroke-width="32" />
+            
+            <!-- BRANCH 3: Bottom branches with smaller sub-branches -->
+            <line x1="-300" y1="1750" x2="1200" y2="1450" stroke="#613831" stroke-width="120" />
+            <line x1="1200" y1="1450" x2="2600" y2="1450" stroke="#613831" stroke-width="80" />
+            <line x1="1200" y1="1450" x2="1400" y2="1550" stroke="#613831" stroke-width="60" />
+            <line x1="1200" y1="1450" x2="1250" y2="1300" stroke="#613831" stroke-width="48" />
+            <line x1="2600" y1="1450" x2="2950" y2="1350" stroke="#613831" stroke-width="40" />
+            <line x1="2600" y1="1450" x2="2750" y2="1550" stroke="#613831" stroke-width="32" />
+            <line x1="2100" y1="1450" x2="2450" y2="1350" stroke="#613831" stroke-width="40" />
+            <line x1="2100" y1="1450" x2="2350" y2="1550" stroke="#613831" stroke-width="32" />
+            
+            <!-- Additional small branches for extra detail -->
+            <line x1="-300" y1="1000" x2="700" y2="800" stroke="#613831" stroke-width="40" />
+            <line x1="700" y1="800" x2="900" y2="700" stroke="#613831" stroke-width="32" />
+            <line x1="700" y1="800" x2="900" y2="900" stroke="#613831" stroke-width="32" />
+            <line x1="-300" y1="1450" x2="700" y2="1250" stroke="#613831" stroke-width="40" />
+            <line x1="700" y1="1250" x2="900" y2="1150" stroke="#613831" stroke-width="32" />
+            <line x1="700" y1="1250" x2="900" y2="1350" stroke="#613831" stroke-width="32" />
+            <line x1="-300" y1="1900" x2="700" y2="1700" stroke="#613831" stroke-width="40" />
+            <line x1="700" y1="1700" x2="900" y2="1600" stroke="#613831" stroke-width="32" />
+            <line x1="700" y1="1700" x2="900" y2="1800" stroke="#613831" stroke-width="32" />
+
+            <a href="journal.html">
+             <text x="1510" y="500" fill="black" font-size="100" style="cursor:pointer;">
+              journal
+             </text>
+            </a>
+            <!-- schimba brown cu partea cu chats !!!!!!!!!!!!!!!!!-->
+            <a href="pink.html">
+             <text x="1310" y="950" fill="black" font-size="100" style="cursor:pointer;">
+              chat with sisters
+             </text>
+            </a>
+            <a href="future_letter.html">
+             <text x="1310" y="1400" fill="black" font-size="100" style="cursor:pointer;">
+              letter to future self
+             </text>
+            </a>
+        </svg>
+     </main>
+    
+    <!-- FALLING CHERRY BLOSSOMS: Container with 10 blossoms that fall down the page -->
+    <div class="petals">
+        <!-- Each blossom is a 5-petal flower with yellow center that falls at different speeds -->
+        <div class="blossom">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="#f2c0d1">
+                <circle cx="15" cy="15" r="3" fill="#f2c0d1"/>
+                <ellipse cx="15" cy="6" rx="4" ry="6" fill="#f2c0d1"/>
+                <ellipse cx="23" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(72 15 15)"/>
+                <ellipse cx="23" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(144 15 15)"/>
+                <ellipse cx="7" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(216 15 15)"/>
+                <ellipse cx="7" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(288 15 15)"/>
+            </svg>
+        </div>
+        <div class="blossom">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="#f2c0d1">
+                <circle cx="15" cy="15" r="3" fill="#f2c0d1"/>
+                <ellipse cx="15" cy="6" rx="4" ry="6" fill="#f2c0d1"/>
+                <ellipse cx="23" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(72 15 15)"/>
+                <ellipse cx="23" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(144 15 15)"/>
+                <ellipse cx="7" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(216 15 15)"/>
+                <ellipse cx="7" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(288 15 15)"/>
+            </svg>
+        </div>
+        <div class="blossom">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="#f2c0d1">
+                <circle cx="15" cy="15" r="3" fill="#f2c0d1"/>
+                <ellipse cx="15" cy="6" rx="4" ry="6" fill="#f2c0d1"/>
+                <ellipse cx="23" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(72 15 15)"/>
+                <ellipse cx="23" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(144 15 15)"/>
+                <ellipse cx="7" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(216 15 15)"/>
+                <ellipse cx="7" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(288 15 15)"/>
+            </svg>
+        </div>
+        <div class="blossom">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="#f2c0d1">
+                <circle cx="15" cy="15" r="3" fill="#f2c0d1"/>
+                <ellipse cx="15" cy="6" rx="4" ry="6" fill="#f2c0d1"/>
+                <ellipse cx="23" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(72 15 15)"/>
+                <ellipse cx="23" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(144 15 15)"/>
+                <ellipse cx="7" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(216 15 15)"/>
+                <ellipse cx="7" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(288 15 15)"/>
+            </svg>
+        </div>
+        <div class="blossom">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="#f2c0d1">
+                <circle cx="15" cy="15" r="3" fill="#f2c0d1"/>
+                <ellipse cx="15" cy="6" rx="4" ry="6" fill="#f2c0d1"/>
+                <ellipse cx="23" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(72 15 15)"/>
+                <ellipse cx="23" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(144 15 15)"/>
+                <ellipse cx="7" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(216 15 15)"/>
+                <ellipse cx="7" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(288 15 15)"/>
+            </svg>
+        </div>
+        <div class="blossom">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="#f2c0d1">
+                <circle cx="15" cy="15" r="3" fill="#f2c0d1"/>
+                <ellipse cx="15" cy="6" rx="4" ry="6" fill="#f2c0d1"/>
+                <ellipse cx="23" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(72 15 15)"/>
+                <ellipse cx="23" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(144 15 15)"/>
+                <ellipse cx="7" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(216 15 15)"/>
+                <ellipse cx="7" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(288 15 15)"/>
+            </svg>
+        </div>
+        <div class="blossom">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="#f2c0d1">
+                <circle cx="15" cy="15" r="3" fill="#f2c0d1"/>
+                <ellipse cx="15" cy="6" rx="4" ry="6" fill="#f2c0d1"/>
+                <ellipse cx="23" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(72 15 15)"/>
+                <ellipse cx="23" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(144 15 15)"/>
+                <ellipse cx="7" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(216 15 15)"/>
+                <ellipse cx="7" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(288 15 15)"/>
+            </svg>
+        </div>
+        <div class="blossom">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="#f2c0d1">
+                <circle cx="15" cy="15" r="3" fill="#f2c0d1"/>
+                <ellipse cx="15" cy="6" rx="4" ry="6" fill="#f2c0d1"/>
+                <ellipse cx="23" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(72 15 15)"/>
+                <ellipse cx="23" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(144 15 15)"/>
+                <ellipse cx="7" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(216 15 15)"/>
+                <ellipse cx="7" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(288 15 15)"/>
+            </svg>
+        </div>
+        <div class="blossom">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="#f2c0d1">
+                <circle cx="15" cy="15" r="3" fill="#f2c0d1"/>
+                <ellipse cx="15" cy="6" rx="4" ry="6" fill="#f2c0d1"/>
+                <ellipse cx="23" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(72 15 15)"/>
+                <ellipse cx="23" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(144 15 15)"/>
+                <ellipse cx="7" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(216 15 15)"/>
+                <ellipse cx="7" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(288 15 15)"/>
+            </svg>
+        </div>
+        <div class="blossom">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="#f2c0d1">
+                <circle cx="15" cy="15" r="3" fill="#f2c0d1"/>
+                <ellipse cx="15" cy="6" rx="4" ry="6" fill="#f2c0d1"/>
+                <ellipse cx="23" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(72 15 15)"/>
+                <ellipse cx="23" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(144 15 15)"/>
+                <ellipse cx="7" cy="21" rx="4" ry="6" fill="#f2c0d1" transform="rotate(216 15 15)"/>
+                <ellipse cx="7" cy="9" rx="4" ry="6" fill="#f2c0d1" transform="rotate(288 15 15)"/>
+            </svg>
+        </div>
+    </div>
+
+</body>
+</html>

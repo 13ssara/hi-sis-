@@ -1,0 +1,204 @@
+/* ============================================ */
+/* GENERAL STYLING */
+/* ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #f6dee6;
+    color: #3e2723;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* ============================================ */
+/* HEADER & ICONS - THE BULLETPROOF VERSION */
+/* ============================================ */
+header {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    z-index: 9999 !important;
+    background-color: transparent !important;
+}
+
+.icons {
+    display: flex !important;
+    gap: 20px !important;
+}
+
+.icon {
+    width: 28px !important;
+    height: 28px !important;
+    color: #C72C66 !important; /* Deep Pink */
+    transition: 0.3s;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon svg {
+    width: 24px !important;
+    height: 24px !important;
+    fill: currentColor !important;
+}
+
+.icon.active {
+    color: #FF69B4 !important; /* Light Pink */
+}
+
+/* Force the SVG inside to be exactly 28px */
+.icon svg {
+    width: 28px !important;
+    height: 28px !important;
+    fill: currentColor !important;
+}
+
+.icon:hover {
+    color: #FF69B4 !important; /* Your light pink */
+    transform: scale(1.1);      /* Adds a little "pop" effect */
+}
+
+.icon.active {
+    color: #FF69B4 !important;
+}
+/* ============================================ */
+/* MAIN CONTENT & TREE CONTAINER */
+/* ============================================ */
+main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.tree-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.tree {
+    width: 100%;
+    height: 100%;
+}
+
+.deer-decoration {
+    position: fixed !important;
+    bottom: 0px !important;
+    right: 20px !important;
+
+    width: 200px !important;
+    height: auto !important;
+
+    z-index: 99999 !important;
+    pointer-events: none;
+}
+/* ============================================ */
+/* SECTION LINKS */
+/* ============================================ */
+.links {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.link {
+    position: absolute;
+    font-size: 24px;
+    font-weight: 600;
+    color: #C72C66;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    pointer-events: all;
+    letter-spacing: 1px;
+}
+
+.link:hover {
+    color: #FF69B4;
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+}
+
+/* ============================================ */
+/* FALLING CHERRY BLOSSOMS */
+/* ============================================ */
+.blossoms-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.blossom {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle at 30% 30%, #FFB6D9, #FF69B4);
+    border-radius: 50%;
+    opacity: 0.8;
+    box-shadow: 
+        -8px -8px 0 -4px #f2c0d1,
+        8px -8px 0 -4px #f2c0d1,
+        -8px 8px 0 -4px #f2c0d1,
+        8px 8px 0 -4px #f2c0d1,
+        0px -10px 0 -5px #f2c0d1;
+    animation: fall linear infinite;
+}
+
+
+.blossom:nth-child(1) { left: 5%; animation-duration: 8s; animation-delay: 0s; }
+.blossom:nth-child(2) { left: 10%; animation-duration: 10s; animation-delay: 1s; }
+.blossom:nth-child(3) { left: 15%; animation-duration: 12s; animation-delay: 2s; }
+.blossom:nth-child(4) { left: 25%; animation-duration: 9s; animation-delay: 1.5s; }
+.blossom:nth-child(5) { left: 35%; animation-duration: 11s; animation-delay: 0.5s; }
+.blossom:nth-child(6) { left: 50%; animation-duration: 13s; animation-delay: 2.5s; }
+.blossom:nth-child(7) { left: 65%; animation-duration: 10s; animation-delay: 1s; }
+.blossom:nth-child(8) { left: 75%; animation-duration: 12s; animation-delay: 0s; }
+.blossom:nth-child(9) { left: 85%; animation-duration: 11s; animation-delay: 1.5s; }
+.blossom:nth-child(10) { left: 95%; animation-duration: 9s; animation-delay: 2s; }
+
+@keyframes fall {
+    from {
+        top: -20px;
+        opacity: 0.8;
+        transform: translateX(0) rotate(0deg);
+    }
+    to {
+        top: 100vh;
+        opacity: 0;
+        transform: translateX(100px) rotate(360deg);
+    }
+}
+
+/* ============================================ */
+/* RESPONSIVE ADJUSTMENTS */
+/* ============================================ */
+@media (max-width: 768px) {
+    .icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .link {
+        font-size: 18px;
+    }
+    
+    .deer {
+        width: 100px;
+        height: 100px;
+    }
+}

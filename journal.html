@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Journals</title>
+    <style>
+        :root {
+            --bg-color: #fdf6f6;
+            --main-pink: #ffb6c1;
+            --accent-pink: #ffdae0;
+            --text-color: #555;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        /* TOOLBAR STYLES */
+        header {
+            padding: 15px 30px;
+            display: flex;
+            justify-content: flex-end;
+            background: white;
+            border-bottom: 1px solid #eee;
+        }
+        .icons { display: flex; gap: 20px; }
+        .icon { color: #888; text-decoration: none; }
+        .active { color: var(--main-pink); }
+
+        /* JOURNAL LAYOUT */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        /* Sidebar: List of Journals */
+        .journal-sidebar {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .journal-list {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .journal-item {
+            padding: 10px;
+            margin-bottom: 10px;
+            background: var(--bg-color);
+            border-radius: 8px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: 0.2s;
+        }
+
+        .journal-item:hover { border-color: var(--main-pink); }
+
+        .add-btn {
+            background: var(--main-pink);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Editor Area */
+        .journal-editor {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input#journalTitle {
+            font-size: 24px;
+            border: none;
+            border-bottom: 2px solid var(--accent-pink);
+            outline: none;
+            padding: 5px;
+            color: #333;
+        }
+
+        textarea#journalBody {
+            height: 400px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: inherit;
+            resize: none;
+            outline: none;
+            line-height: 1.6;
+        }
+
+        .save-btn {
+            align-self: flex-end;
+            background: var(--main-pink);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="icons">
+            <a href="profile.html" class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M12 14c-6.1 0-8 4-8 4v2h16v-2s-1.9-4-8-4z"/></svg></a>
+            <a href="index.html" class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></a>
+            <a href="pink.html" class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></a>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="journal-sidebar">
+            <div class="journal-list" id="journalList">
+                </div>
+            <button class="add-btn" onclick="createNewJournal()">+ New Journal</button>
+        </aside>
+
+        <main class="journal-editor">
+            <input type="text" id="journalTitle" placeholder="Journal Title...">
+            <textarea id="journalBody" placeholder="Start writing your thoughts..."></textarea>
+            <button class="save-btn" onclick="saveCurrentJournal()">Save Journal</button>
+        </main>
+    </div>
+
+    <script>
+        // DATABASE GUIDE FOR LATER:
+        // 1. You will need a database table called 'journals' with columns: id, user_id, title, content, updated_at.
+        // 2. Instead of localStorage.getItem, you will use a 'GET' request to your API.
+        // 3. Instead of localStorage.setItem, you will use a 'POST' or 'PATCH' request to your API.
+
+        let journals = JSON.parse(localStorage.getItem('my_journals')) || [];
+        let currentJournalIndex = null;
+
+        // LOAD JOURNALS
+        function renderJournalList() {
+            const listElement = document.getElementById('journalList');
+            listElement.innerHTML = '';
+            
+            // DATABASE SYNC: This is where you would 'fetch' data from your DB instead of this array
+            journals.forEach((journal, index) => {
+                const div = document.createElement('div');
+                div.className = 'journal-item';
+                div.innerText = journal.title || 'Untitled Journal';
+                div.onclick = () => loadJournal(index);
+                listElement.appendChild(div);
+            });
+        }
+
+        function createNewJournal() {
+            const newJournal = { title: 'New Journal', content: '' };
+            journals.push(newJournal);
+            currentJournalIndex = journals.length - 1;
+            renderJournalList();
+            loadJournal(currentJournalIndex);
+        }
+
+        function loadJournal(index) {
+            currentJournalIndex = index;
+            document.getElementById('journalTitle').value = journals[index].title;
+            document.getElementById('journalBody').value = journals[index].content;
+        }
+
+        function saveCurrentJournal() {
+            if (currentJournalIndex === null) return alert("Create a journal first!");
+
+            // Update our local array
+            journals[currentJournalIndex].title = document.getElementById('journalTitle').value;
+            journals[currentJournalIndex].content = document.getElementById('journalBody').value;
+
+            // SAVE TO DATABASE (Placeholder)
+            // Example: fetch('/api/journals', { method: 'POST', body: JSON.stringify(journals[currentJournalIndex]) })
+            localStorage.setItem('my_journals', JSON.stringify(journals));
+            
+            alert("Journal saved locally!");
+            renderJournalList();
+        }
+
+        // Initialize on page load
+        renderJournalList();
+    </script>
+</body>
+</html>
