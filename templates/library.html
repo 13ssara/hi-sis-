@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library - Hi Sis</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffb3ba 0%, #ffdfba 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #8b4513;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            color: #8b4513;
+            border-bottom: 3px solid #d4689f;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .add-button {
+            background: #d4689f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .add-button:hover {
+            background: #b8578a;
+        }
+
+        .bookshelf {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .book {
+            width: 120px;
+            height: 180px;
+            background: linear-gradient(to right, #8b4513 0%, #654321 100%);
+            border-radius: 5px 15px 15px 5px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .book:hover {
+            transform: translateY(-5px);
+        }
+
+        .book::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            background: var(--book-color, #d4689f);
+            border-radius: 3px 13px 13px 3px;
+        }
+
+        .book-title {
+            position: absolute;
+            bottom: 20px;
+            left: 15px;
+            right: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #8b4513;
+            text-align: center;
+            transform: rotate(-90deg);
+            transform-origin: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .book-author {
+            position: absolute;
+            top: 20px;
+            left: 15px;
+            right: 15px;
+            font-size: 10px;
+            color: #654321;
+            text-align: center;
+            transform: rotate(-90deg);
+            transform-origin: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .empty-shelf {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 40px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #ff69b4 0%, #ffb6c1 100%);
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 My Library</h1>
+
+        <div class="section">
+            <h2>Public Journals <a href="/journal/new" class="add-button">+ Add Journal</a></h2>
+            <div class="bookshelf">
+                {% for journal in public_journals %}
+                <div class="book" style="--book-color: {{ journal.cover_color }}" onclick="openJournal({{ journal.id }})">
+                    <div class="book-author">{{ journal.author_id }}</div>
+                    <div class="book-title">{{ journal.title }}</div>
+                </div>
+                {% endfor %}
+                {% if not public_journals %}
+                <div class="empty-shelf">No public journals yet. Be the first to share!</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Private Journals <a href="/journal/new" class="add-button">+ Add Journal</a></h2>
+            <div class="bookshelf">
+                {% for journal in private_journals %}
+                <div class="book" style="--book-color: {{ journal.cover_color }}" onclick="openJournal({{ journal.id }})">
+                    <div class="book-author">You</div>
+                    <div class="book-title">{{ journal.title }}</div>
+                </div>
+                {% endfor %}
+                {% if not private_journals %}
+                <div class="empty-shelf">No private journals yet. Start writing your thoughts!</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Friends' Journals <a href="/journal/new" class="add-button">+ Add Journal</a></h2>
+            <div class="bookshelf">
+                {% for journal in friend_journals %}
+                <div class="book" style="--book-color: {{ journal.cover_color }}" onclick="openJournal({{ journal.id }})">
+                    <div class="book-author">{{ journal.author_id }}</div>
+                    <div class="book-title">{{ journal.title }}</div>
+                </div>
+                {% endfor %}
+                {% if not friend_journals %}
+                <div class="empty-shelf">No friends' journals yet. Connect with friends to see their journals!</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Hi, Sis! 💕
+    </div>
+
+    <script>
+        function openJournal(journalId) {
+            window.location.href = `/journal/${journalId}`;
+        }
+    </script>
+</body>
+</html>

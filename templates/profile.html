@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - HiSis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #1b100a;
+            color: #f6dee6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        
+
+        .page-wrap {
+            position: relative;
+            z-index: 1;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: #f6dee6;
+            text-decoration: none;
+        }
+
+        .logo span {
+            display: inline-block;
+            color: #f6dee6;
+
+        }
+
+        .back-link {
+            color: #f6dee6;
+            text-decoration: none;
+            font-size: 14px;
+            border: 1px solid rgba(255, 217, 231, 0.4);
+            padding: 10px 16px;
+            border-radius: 16px;
+            transition: background-color 0.25s ease;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 217, 231, 0.12);
+        }
+
+        .profile-panel {
+            background: rgba(255, 242, 244, 0.08);
+            border: 1px solid rgba(255, 217, 231, 0.16);
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+        }
+
+        .avatar-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 35px;
+        }
+
+        .avatar-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #de85a3;
+            display: grid;
+            place-items: center;
+            background: #32262a;
+            background-size: cover;
+            background-position: center;
+            color: #f6dee6;
+            font-size: 48px;
+            position:relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .avatar-circle::before {
+            content: '📷';
+            font-size: 48px;
+        }
+
+        .avatar-circle::after {
+            content: 'Change';
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #f6dee6;
+            padding: 6px 12px;
+            background: rgba(222, 133, 163, 0.8);
+            border-radius: 999px;
+            letter-spacing: 0.4px;
+        }
+
+        .avatar-circle.uploaded::before,
+        .avatar-circle.uploaded::after {
+            display: none;
+        }
+
+        .avatar-input {
+            display: none;
+        }
+
+        .avatar-label {
+            font-size: 14px;
+            color: #f6dee6;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .title-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+
+        .title-list li {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 217, 231, 0.16);
+            border-radius: 18px;
+            padding: 12px 16px;
+            color: #f6dee6;
+            font-size: 14px;
+        }
+
+        .title-list li::before {
+            
+            margin-right: 10px;
+            color: #f6dee6;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .profile-section {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 217, 231, 0.14);
+            border-radius: 24px;
+            padding: 28px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 18px;
+            color: #f6dee6;
+        }
+
+        .field-row {
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            gap: 14px 18px;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .field-row label {
+            color: #f6dee6;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .field-row input,
+        .field-row textarea {
+            width: 100%;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 217, 231, 0.22);
+            background: rgba(255, 255, 255, 0.08);
+            color: #f6dee6;
+            padding: 12px 14px;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 42px;
+        }
+
+        .field-row textarea {
+            min-height: 90px;
+        }
+
+        .friends-list {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .friend-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 84px;
+            gap: 10px;
+        }
+
+        .friend-pic {
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f6dee6, #f2c0d1);
+            display: grid;
+            place-items: center;
+            color: #de85a3;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .friend-name {
+            color: #f6dee6;
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 10px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 217, 231, 0.16);
+            border-radius: 20px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #f6dee6;
+        }
+
+        .stat-label {
+            color: #f6dee6;
+            font-size: 13px;
+        }
+
+        .save-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #f2c0d1 0%, #de85a3 100%);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            margin-top: 26px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(103, 5, 46, 0.28);
+        }
+
+        @media (max-width: 820px) {
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+    </style>
+</head>
+<body>
+   
+    <div class="page-wrap">
+        <div class="top-bar">
+            <a href="/" class="logo">Hi<span>Sis</span></a>
+            <a href="/" class="back-link">← Back to Home</a>
+        </div>
+
+        <div class="profile-panel">
+            {% if error %}
+            <div style="background: rgba(255, 100, 100, 0.2); border: 1px solid #ff6464; border-radius: 10px; padding: 15px; margin-bottom: 20px; color: #ff6464; text-align: center;">
+                {{ error }}
+            </div>
+            {% endif %}
+            <form method="POST" action="{{ url_for('save_profile') }}" enctype="multipart/form-data">
+                <div class="avatar-wrap">
+                    <label for="avatar-upload" class="avatar-circle{% if user and user.profile_pic %} uploaded{% endif %}" style="{{ 'background-image: url(/static/' ~ user.profile_pic ~ ');' if user and user.profile_pic else '' }}"></label>
+                    <input type="file" id="avatar-upload" class="avatar-input" name="avatar" accept="image/*">
+                </div>
+
+                <div class="profile-grid">
+                    <div class="profile-section">
+                        <div class="section-title">Profile Info</div>
+                        <div class="field-row">
+                            <label for="username">Username:</label>
+                            <input id="username" name="username" type="text" placeholder="Enter username" value="{{ user.username if user else '' }}" required>
+                        </div>
+                        <div class="field-row">
+                            <label for="password">Password:</label>
+                            <input id="password" name="password" type="password" placeholder="Enter password" {% if not user %}required{% endif %}>
+                        </div>
+                        <div class="field-row">
+                            <label for="name">Name:</label>
+                            <input id="name" name="name" type="text" placeholder="Your Name" value="{{ user.name if user else '' }}">
+                        </div>
+                        <div class="field-row">
+                            <label for="email">Email:</label>
+                            <input id="email" name="email" type="email" placeholder="you@example.com" value="{{ user.email if user else '' }}">
+                        </div>
+                    <div class="field-row">
+                        <label>Friends:</label>
+                        <div class="friends-list">
+                            {% for friend in friends %}
+                            <div class="friend-card">
+                                <div class="friend-pic">{{ friend.name[:2].upper() if friend.name else friend.username[:2].upper() }}</div>
+                                <div class="friend-name">{{ friend.name or friend.username }}</div>
+                            </div>
+                            {% endfor %}
+                            {% if not friends %}
+                            <div class="friend-card">
+                                <div class="friend-pic">?</div>
+                                <div class="friend-name">No friends yet</div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <form method="POST" action="{{ url_for('add_friend') }}" style="margin-top: 16px;">
+                            <input name="friend_username" type="text" placeholder="Add friend by username" style="width: 200px; margin-right: 10px;">
+                            <button type="submit" class="button" style="padding: 8px 16px; font-size: 14px;">Add Friend</button>
+                        </form>
+                        <a href="{{ url_for('friends') }}" style="display: block; margin-top: 10px; color: #de85a3; text-decoration: none; font-size: 14px;">View all friends</a>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <div class="section-title">Counts</div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">{{ journal_count }}</div>
+                            <div class="stat-label">Journals</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">Letters</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">{{ user.older_hearts if user else 0 }}</div>
+                            <div class="stat-label">Older Sis Hearts</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">{{ user.younger_hearts if user else 0 }}</div>
+                            <div class="stat-label">Younger Sis Hearts</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <div class="section-title">Journals</div>
+                    <div class="field-row"></div>
+                        <ul class="title-list">
+                            {% for journal in journals %}
+                            <li>{{ journal.title }}</li>
+                            {% endfor %}
+                            {% if not journals %}
+                            <li style="color: #c9aaa0; font-style: italic;">No journals yet. Start writing!</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <div class="section-title">My Character</div>
+                    <div class="field-row">
+                        <textarea id="character" placeholder="Describe your character here..."></textarea>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <div class="section-title">Letters</div>
+                    <div class="field-row">
+                        <ul class="title-list">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <div class="section-title">Your Story</div>
+                    <div class="field-row">
+                        <textarea id="about" placeholder="Share your story or community notes..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="save-btn">{% if user %}Save Changes{% else %}Create Account{% endif %}</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const avatarUpload = document.getElementById('avatar-upload');
+        const avatarCircle = document.querySelector('.avatar-circle');
+
+        avatarUpload.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = () => {
+                avatarCircle.style.backgroundImage = `url('${reader.result}')`;
+                avatarCircle.classList.add('uploaded');
+            };
+            reader.readAsDataURL(file);
+        });
+
+        avatarCircle.addEventListener('click', () => {
+            avatarUpload.click();
+        });
+    </script>
+</body>
+</html>

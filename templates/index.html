@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HiSis - Thread Discussion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background-color: #030303;
+            color: #d7dadc;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #1a1a1b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #343536;
+        }
+
+        h1 {
+            color: #818384;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .create-thread-section {
+            background-color: #1a1a1b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #343536;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #818384;
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="username"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #343536;
+            border-radius: 4px;
+            background-color: #272729;
+            color: #d7dadc;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        input[type="text"]:focus,
+        input[type="username"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #818384;
+            background-color: #1a1a1b;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #0a66c2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #0952a0;
+        }
+
+        button:active {
+            background-color: #073f9a;
+        }
+
+        .threads-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .thread-card {
+            background-color: #1a1a1b;
+            border: 1px solid #343536;
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: border-color 0.2s, background-color 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .thread-card:hover {
+            border-color: #818384;
+            background-color: #272729;
+        }
+
+        .thread-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #d7dadc;
+            margin-bottom: 8px;
+        }
+
+        .thread-content {
+            font-size: 14px;
+            color: #b0b3b8;
+            margin-bottom: 12px;
+            line-height: 1.5;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .thread-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #818384;
+        }
+
+        .thread-author {
+            font-weight: 600;
+        }
+
+        .thread-date {
+            color: #818384;
+        }
+
+        .thread-stats {
+            background-color: #272729;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .error-message {
+            background-color: #2a0000;
+            border: 1px solid #660000;
+            color: #ff6b6b;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .success-message {
+            background-color: #001a00;
+            border: 1px solid #006600;
+            color: #51cf66;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .no-threads {
+            text-align: center;
+            padding: 40px;
+            color: #818384;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/" style="text-decoration: none; color: inherit;">
+                <h1 style="margin-bottom: 0;">🔗 HiSis</h1>
+            </a>
+            <p style="color: #818384; font-size: 14px;"><a href="/" style="color: #0a66c2; text-decoration: none;">← Back to Home</a> | Thread Discussions</p>
+        </header>
+
+        <div class="create-thread-section">
+            <h2 style="color: #d7dadc; margin-bottom: 15px; font-size: 18px;">Create New Thread</h2>
+            <div id="messageBox"></div>
+            <form id="createThreadForm">
+                <div class="form-group">
+                    <label for="author">Your Name</label>
+                    <input type="text" id="author" name="author" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="title">Thread Title</label>
+                    <input type="text" id="title" name="title" placeholder="What's your thread about?" required>
+                </div>
+                <div class="form-group">
+                    <label for="content">Content (Optional)</label>
+                    <textarea id="content" name="content" placeholder="Add more details to your thread..."></textarea>
+                </div>
+                <button type="submit">Create Thread</button>
+            </form>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <h2 style="color: #d7dadc; margin-bottom: 15px; font-size: 18px;">Threads</h2>
+            <div id="threadsList" class="threads-list">
+                <div class="no-threads">Loading threads...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load threads on page load
+        loadThreads();
+
+        // Form submission
+        document.getElementById('createThreadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            createThread();
+        });
+
+        function loadThreads() {
+            fetch('/api/threads')
+                .then(response => response.json())
+                .then(threads => {
+                    const threadsList = document.getElementById('threadsList');
+                    
+                    if (threads.length === 0) {
+                        threadsList.innerHTML = '<div class="no-threads">No threads yet. Be the first to create one!</div>';
+                        return;
+                    }
+
+                    threadsList.innerHTML = threads.map(thread => `
+                        <a href="/thread/${thread.id}" class="thread-card">
+                            <div class="thread-title">${escapeHtml(thread.title)}</div>
+                            ${thread.content ? `<div class="thread-content">${escapeHtml(thread.content)}</div>` : ''}
+                            <div class="thread-meta">
+                                <span>
+                                    <span class="thread-author">u/${escapeHtml(thread.author)}</span>
+                                    <span class="thread-date">${formatDate(thread.created_at)}</span>
+                                </span>
+                                <span class="thread-stats">${thread.post_count} posts</span>
+                            </div>
+                        </a>
+                    `).join('');
+                })
+                .catch(error => {
+                    console.error('Error loading threads:', error);
+                    document.getElementById('threadsList').innerHTML = '<div class="no-threads">Error loading threads</div>';
+                });
+        }
+
+        function createThread() {
+            const author = document.getElementById('author').value;
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+            const messageBox = document.getElementById('messageBox');
+
+            fetch('/api/threads', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title, content, author })
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to create thread');
+                return response.json();
+            })
+            .then(data => {
+                messageBox.innerHTML = '<div class="success-message">✓ Thread created successfully!</div>';
+                document.getElementById('createThreadForm').reset();
+                setTimeout(() => {
+                    messageBox.innerHTML = '';
+                    loadThreads();
+                }, 1500);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                messageBox.innerHTML = '<div class="error-message">✗ Error creating thread. Please try again.</div>';
+            });
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMs / 3600000);
+            const diffDays = Math.floor(diffMs / 86400000);
+
+            if (diffMins < 1) return 'now';
+            if (diffMins < 60) return `${diffMins}m ago`;
+            if (diffHours < 24) return `${diffHours}h ago`;
+            if (diffDays < 7) return `${diffDays}d ago`;
+            
+            return date.toLocaleDateString();
+        }
+    </script>
+</body>
+</html>

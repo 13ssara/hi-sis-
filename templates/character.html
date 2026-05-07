@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Character - HiSis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #f5ede0 0%, #ede4d3 50%, #e8dfd0 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #8b6f47;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            color: #c9876b;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            color: #8b6f47;
+            text-decoration: none;
+        }
+
+        h1 {
+            color: #8b6f47;
+            font-size: 40px;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .character-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #8b6f47;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d4a373;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #8b6f47;
+            box-shadow: 0 0 0 3px rgba(139, 111, 71, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #e89b7b, #d97d5f);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #999;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">🌸 HiSis</a>
+    </header>
+
+    <div class="container">
+        <a href="/" class="back-link">← Back to Home</a>
+
+        <h1>🎭 Create Your Character</h1>
+
+        <div class="character-card">
+            <form>
+                <div class="form-group">
+                    <label for="name">Character Name</label>
+                    <input type="text" id="name" name="name" placeholder="What is your character's name?" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="text" id="age" name="age" placeholder="Character's age">
+                    </div>
+                    <div class="form-group">
+                        <label for="species">Species/Race</label>
+                        <input type="text" id="species" name="species" placeholder="Human, Elf, Dragon, etc.">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="personality">Personality Traits</label>
+                    <textarea id="personality" name="personality" placeholder="Describe your character's personality..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="backstory">Backstory</label>
+                    <textarea id="backstory" name="backstory" placeholder="Tell the story of your character..."></textarea>
+                </div>
+
+                <button type="submit" class="btn">Create Character</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 HiSis. Bring your imagination to life.</p>
+    </footer>
+</body>
+</html>

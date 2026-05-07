@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - hi, sis!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.3px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background: repeating-linear-gradient(90deg, 
+                #f1aed0 0px, 
+                #f1a9ce 36px, 
+                #1c0d02 10px, 
+                #1c0d02 72px
+            );
+            overflow: hidden;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            background-color: #fff9f3;
+            border-radius: 20px;
+            padding: 40px 35px;
+            width: 100%;
+            max-width: 320px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            animation: slideIn 0.6s ease-out;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 24px;
+            height: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: #c9aaa0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .close-btn:hover {
+            background-color: rgba(201, 170, 160, 0.1);
+            color: #4a3728;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a3728;
+            font-size: 26px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #d4689f;
+            font-size: 11px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            color: #4a3728;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 11px 13px;
+            border: 2px solid #e8d5c8;
+            border-radius: 10px;
+            font-size: 13px;
+            font-family: 'Poppins', sans-serif;
+            color: #4a3728;
+            background-color: #fffbf8;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #d4689f;
+            box-shadow: 0 0 0 3px rgba(212, 104, 159, 0.1);
+            background-color: #ffffff;
+        }
+
+        input::placeholder {
+            color: #c9aaa0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        button {
+            flex: 1;
+            padding: 11px;
+            border: none;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #d4689f 0%, #c85685 100%);
+            color: white;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 104, 159, 0.3);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .btn-signup {
+            background-color: white;
+            color: #d4689f;
+            border: 2px solid #d4689f;
+        }
+
+        .btn-signup:hover {
+            background-color: #faf5f0;
+            box-shadow: 0 4px 12px rgba(212, 104, 159, 0.2);
+        }
+
+        
+
+        .footer {
+            background-color:#1c0d02;
+            color:  #d4689f;
+            text-align: center;
+            padding: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            font-family: 'Playfair Display', serif;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <a class="close-btn" href="/home1" title="Go to Home">×</a>
+            <p class="subtitle">Log In</p>
+            
+           
+
+            <form method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-login">Log In</button>
+                    <a class="btn-signup" href="/profile">Create Account</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        hi, sis!
+    </footer>
+</body>
+</html>

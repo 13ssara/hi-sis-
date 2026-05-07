@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - hi, sis!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.3px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background: repeating-linear-gradient(90deg, 
+                 #f1aed0 0px, 
+                #f1a9ce 36px, 
+                #1c0d02 10px, 
+                #1c0d02 72px
+            );
+            overflow: hidden;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .signup-box {
+            background-color: #faf5f0;
+            border-radius: 20px;
+            padding: 40px 35px;
+            width: 100%;
+            max-width: 320px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            animation: slideIn 0.6s ease-out;
+            margin: 15px 0;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a3728;
+            font-size: 26px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #d4689f;
+            font-size: 11px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            color: #4a3728;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e8d5c8;
+            border-radius: 10px;
+            font-size: 13px;
+            font-family: 'Poppins', sans-serif;
+            color: #4a3728;
+            background-color: #fffbf8;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #d4689f;
+            box-shadow: 0 0 0 3px rgba(212, 104, 159, 0.1);
+            background-color: #ffffff;
+        }
+
+        input::placeholder {
+            color: #c9aaa0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-create {
+            background: linear-gradient(135deg, #d4689f 0%, #c85685 100%);
+            color: white;
+        }
+
+        .btn-create:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 104, 159, 0.3);
+        }
+
+        .btn-create:active {
+            transform: translateY(0);
+        }
+
+        .btn-back {
+            background-color: white;
+            color: #d4689f;
+            border: 2px solid #d4689f;
+        }
+
+        .btn-back:hover {
+            background-color: #faf5f0;
+            box-shadow: 0 4px 12px rgba(212, 104, 159, 0.2);
+        }
+
+        .error-message {
+            background-color: #ffe0e6;
+            color: #a84054;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            border-left: 4px solid #d4689f;
+        }
+
+        .footer {
+            background-color: #c85685;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            font-family: 'Playfair Display', serif;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        @ke {% if error %}
+            <div class="error-message">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Choose your username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-create">Create Account</button>
+                    <button type="button" class="btn-back" onclick="window.location.href='{{ url_for(\"login\") }}'">Back</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        hi, sis</div>
+
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-create">Create Account</button>
+                    <button type="button" class="btn-back" onclick="window.location.href='{{ url_for(\"login\") }}'">Back</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        hi, sis!
+    </footer>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ thread.title }} - HiSis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background-color: #030303;
+            color: #d7dadc;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #0a66c2;
+            text-decoration: none;
+            font-size: 14px;
+            margin-right: 20px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .thread-header {
+            background-color: #1a1a1b;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #343536;
+            margin-bottom: 20px;
+        }
+
+        .thread-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #d7dadc;
+            margin-bottom: 12px;
+        }
+
+        .thread-content {
+            font-size: 16px;
+            color: #b0b3b8;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .thread-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #818384;
+            padding-top: 12px;
+            border-top: 1px solid #343536;
+        }
+
+        .thread-author {
+            font-weight: 600;
+            color: #d7dadc;
+        }
+
+        .create-post-section {
+            background-color: #1a1a1b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #343536;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #818384;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #343536;
+            border-radius: 4px;
+            background-color: #272729;
+            color: #d7dadc;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #818384;
+            background-color: #1a1a1b;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #0a66c2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #0952a0;
+        }
+
+        .posts-section {
+            margin-top: 30px;
+        }
+
+        .posts-section h2 {
+            font-size: 18px;
+            color: #d7dadc;
+            margin-bottom: 15px;
+        }
+
+        .posts-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .post-card {
+            background-color: #1a1a1b;
+            border: 1px solid #343536;
+            border-radius: 8px;
+            padding: 16px;
+            border-left: 3px solid #0a66c2;
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .post-author {
+            font-weight: 600;
+            color: #d7dadc;
+        }
+
+        .post-date {
+            color: #818384;
+        }
+
+        .post-content {
+            font-size: 14px;
+            color: #b0b3b8;
+            line-height: 1.6;
+        }
+
+        .no-posts {
+            text-align: center;
+            padding: 40px;
+            color: #818384;
+            background-color: #1a1a1b;
+            border-radius: 8px;
+            border: 1px solid #343536;
+        }
+
+        .error-message {
+            background-color: #2a0000;
+            border: 1px solid #660000;
+            color: #ff6b6b;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .success-message {
+            background-color: #001a00;
+            border: 1px solid #006600;
+            color: #51cf66;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/threads" class="back-link">← Back to Threads</a>
+        <a href="/" style="color: #0a66c2; text-decoration: none; font-size: 14px; margin-left: 20px;">← Home</a>
+
+        <div class="thread-header">
+            <div class="thread-title">{{ thread.title }}</div>
+            {% if thread.content %}
+                <div class="thread-content">{{ thread.content }}</div>
+            {% endif %}
+            <div class="thread-meta">
+                <span><span class="thread-author">u/{{ thread.author }}</span></span>
+                <span class="post-date">{{ thread.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+            </div>
+        </div>
+
+        <div class="create-post-section">
+            <h3 style="color: #d7dadc; margin-bottom: 15px; font-size: 16px;">Add a Comment</h3>
+            <div id="messageBox"></div>
+            <form id="createPostForm">
+                <div class="form-group">
+                    <label for="postAuthor">Your Name</label>
+                    <input type="text" id="postAuthor" name="author" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="postContent">Comment</label>
+                    <textarea id="postContent" name="content" placeholder="Share your thoughts..." required></textarea>
+                </div>
+                <button type="submit">Post Comment</button>
+            </form>
+        </div>
+
+        <div class="posts-section">
+            <h2>Comments</h2>
+            <div id="postsList" class="posts-list">
+                <div class="no-posts">Loading comments...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const threadId = {{ thread.id }};
+
+        // Load posts on page load
+        loadPosts();
+
+        // Form submission
+        document.getElementById('createPostForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            createPost();
+        });
+
+        function loadPosts() {
+            fetch(`/api/threads/${threadId}/posts`)
+                .then(response => response.json())
+                .then(posts => {
+                    const postsList = document.getElementById('postsList');
+                    
+                    if (posts.length === 0) {
+                        postsList.innerHTML = '<div class="no-posts">No comments yet. Be the first to comment!</div>';
+                        return;
+                    }
+
+                    postsList.innerHTML = posts.map(post => `
+                        <div class="post-card">
+                            <div class="post-header">
+                                <span class="post-author">u/${escapeHtml(post.author)}</span>
+                                <span class="post-date">${formatDate(post.created_at)}</span>
+                            </div>
+                            <div class="post-content">${escapeHtml(post.content)}</div>
+                        </div>
+                    `).join('');
+                })
+                .catch(error => {
+                    console.error('Error loading posts:', error);
+                    document.getElementById('postsList').innerHTML = '<div class="no-posts">Error loading comments</div>';
+                });
+        }
+
+        function createPost() {
+            const author = document.getElementById('postAuthor').value;
+            const content = document.getElementById('postContent').value;
+            const messageBox = document.getElementById('messageBox');
+
+            fetch(`/api/threads/${threadId}/posts`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ content, author })
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to create post');
+                return response.json();
+            })
+            .then(data => {
+                messageBox.innerHTML = '<div class="success-message">✓ Comment posted successfully!</div>';
+                document.getElementById('createPostForm').reset();
+                setTimeout(() => {
+                    messageBox.innerHTML = '';
+                    loadPosts();
+                }, 1500);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                messageBox.innerHTML = '<div class="error-message">✗ Error posting comment. Please try again.</div>';
+            });
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMs / 3600000);
+            const diffDays = Math.floor(diffMs / 86400000);
+
+            if (diffMins < 1) return 'now';
+            if (diffMins < 60) return `${diffMins}m ago`;
+            if (diffHours < 24) return `${diffHours}h ago`;
+            if (diffDays < 7) return `${diffDays}d ago`;
+            
+            return date.toLocaleDateString();
+        }
+    </script>
+</body>
+</html>

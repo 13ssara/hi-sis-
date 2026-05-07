@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter to Yourself - HiSis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #f5ede0 0%, #ede4d3 50%, #e8dfd0 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #8b6f47;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            color: #c9876b;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            color: #8b6f47;
+            text-decoration: none;
+        }
+
+        h1 {
+            color: #8b6f47;
+            font-size: 40px;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .letter-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #8b6f47;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        textarea,
+        input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d4a373;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        textarea {
+            min-height: 350px;
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #8b6f47;
+            box-shadow: 0 0 0 3px rgba(139, 111, 71, 0.1);
+        }
+
+        .info-box {
+            background: rgba(232, 155, 123, 0.1);
+            border-left: 4px solid #e89b7b;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #e89b7b, #d97d5f);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #999;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">🌸 HiSis</a>
+    </header>
+
+    <div class="container">
+        <a href="/" class="back-link">← Back to Home</a>
+
+        <h1>💌 Letter to Yourself</h1>
+
+        <div class="letter-card">
+            <div class="info-box">
+                ✨ Write a heartfelt letter to yourself. You can schedule it to be delivered to your email at a later date!
+            </div>
+
+            <form>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="E.g., 'A message for my future self'" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="deliver_date">Deliver On (Optional)</label>
+                    <input type="date" id="deliver_date" name="deliver_date" placeholder="Choose when to receive this letter">
+                </div>
+
+                <div class="form-group">
+                    <label for="letter">Your Letter</label>
+                    <textarea id="letter" name="letter" placeholder="Dear future me,\n\nWrite your thoughts, dreams, and encouragement to your future self..."></textarea>
+                </div>
+
+                <button type="submit" class="btn">Save & Send Letter</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 HiSis. Send love to your future self.</p>
+    </footer>
+</body>
+</html>

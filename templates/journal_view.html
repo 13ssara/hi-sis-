@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Journal - HiSis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #1a0f08;
+            color: #f8e4dd;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .journal-container {
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 242, 244, 0.08);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 217, 231, 0.16);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #ffd9e7;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: #ffd9e7;
+            text-decoration: none;
+            font-size: 14px;
+            border: 1px solid rgba(255, 217, 231, 0.4);
+            padding: 10px 16px;
+            border-radius: 16px;
+            transition: background-color 0.25s ease;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 217, 231, 0.12);
+        }
+
+        .page-book {
+            background: #fff9f3;
+            color: #4a3728;
+            padding: 60px 50px;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            min-height: 500px;
+            page-break-after: always;
+            margin-bottom: 30px;
+        }
+
+        .page-number {
+            text-align: center;
+            color: #c9aaa0;
+            font-size: 13px;
+            margin-top: 20px;
+        }
+
+        .journal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            color: #4a3728;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .journal-author {
+            text-align: center;
+            color: #8b7355;
+            font-size: 14px;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .content-line {
+            line-height: 1.8;
+            color: #4a3728;
+            font-size: 15px;
+            margin-bottom: 12px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .edit-button {
+            display: inline-block;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #d4689f 0%, #c85685 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .edit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 104, 159, 0.3);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .nav-button {
+            background: rgba(255, 242, 244, 0.08);
+            border: 1px solid rgba(255, 217, 231, 0.16);
+            color: #ffd9e7;
+            padding: 10px 16px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-button:hover {
+            background: rgba(255, 217, 231, 0.12);
+        }
+    </style>
+</head>
+<body>
+    <div class="journal-container">
+        <div class="header">
+            <a href="/" class="logo">HiSis</a>
+            <a href="/library" class="back-link">← Back to Library</a>
+        </div>
+
+        <div class="page-book">
+            <h1 class="journal-title">{{ journal.title }}</h1>
+            <p class="journal-author">by You</p>
+            
+            <div id="journal-content"></div>
+
+            {% if session.user_id == journal.author_id %}
+            <a href="/journal/{{ journal.id }}" class="edit-button">Edit Journal</a>
+            {% endif %}
+        </div>
+
+        <div class="navigation">
+            <a href="/library" class="nav-button">← Back to Library</a>
+        </div>
+    </div>
+
+    <script>
+        // Parse and display journal content
+        const contentContainer = document.getElementById('journal-content');
+        const rawContent = `{{ journal.content|safe }}`;
+        
+        try {
+            // Try to parse as JSON (for multi-page journals)
+            const pages = JSON.parse(rawContent);
+            let contentHTML = '';
+            for (let key in pages) {
+                if (pages[key] && pages[key].trim()) {
+                    contentHTML += `<div class="content-line">${pages[key]}</div>`;
+                }
+            }
+            contentContainer.innerHTML = contentHTML;
+        } catch (e) {
+            // If not JSON, display as plain text
+            contentContainer.innerHTML = `<div class="content-line">${rawContent}</div>`;
+        }
+    </script>
+</body>
+</html>
